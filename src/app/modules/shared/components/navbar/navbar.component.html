@@ -1,0 +1,32 @@
+
+  
+
+<mat-toolbar>
+    <section>
+        <button mat-mini-fab aria-label="Example icon button with a menu icon" [matMenuTriggerFor]="secciones" class="botonmenu">
+            <mat-icon class="iconomenu">menu</mat-icon>
+        </button>
+      </section>
+    <mat-menu #secciones="matMenu" class="menumenu">
+        <button mat-menu-item routerLink="/inicio">inicio</button>
+        <button mat-menu-item routerLink="/registro">registro</button>
+        <button mat-menu-item routerLink="/inicio-sesion">inicio Sesion</button>
+        
+    </mat-menu>
+
+    <div class="example-button-container">
+        <span id="textoinicio">Inicio</span>
+    </div>
+
+    <span class="example-spacer"></span>
+
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+
+
+  
