@@ -4,5 +4,5 @@ export interface Productos {
     imagen: string;
     descripcion: string;
     tipo: string;
-    marcas: string;
+    marca: string;
 }
