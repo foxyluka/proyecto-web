@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Productos } from "src/app/models/productos";
-import { ServiceService } from '../../service.service';
+import { CrudService } from '../../service.service';
 import { FormControl, FormGroup, Validators, Validator  } from '@angular/forms';
 
 @Component({
@@ -21,10 +21,13 @@ export class TableComponent {
     nombre: new FormControl('',Validators.required),
     imagen: new FormControl('',Validators.required),
     descripcion: new FormControl('',Validators.required),
+    precio: new FormControl('',Validators.required),
     tipo: new FormControl('',Validators.required),
     marca: new FormControl('',Validators.required),
+    categoria: new FormControl('',Validators.required),
+    alt: new FormControl('',Validators.required),
   })
-  constructor(public servicioCrud: ServiceService){}
+  constructor(public servicioCrud: CrudService){}
   ngOnInit():void{
     this.servicioCrud.obtenerProducto().subscribe(productos=>{
       this.coleccionProductos=productos})
@@ -38,8 +41,11 @@ export class TableComponent {
         nombre: this.Productos.value.nombre!,
         imagen: this.Productos.value.imagen!,
         descripcion: this.Productos.value.descripcion!,
+        precio:this.Productos.value.precio!,
         tipo: this.Productos.value.tipo!,
         marca: this.Productos.value.marca!,
+        categoria: this.Productos.value.categoria!,
+        alt:this.Productos.value.alt!,
       }
       await this.servicioCrud.crearProducto(nuevoProducto)
         .then(producto => {
@@ -73,8 +79,11 @@ export class TableComponent {
       nombre: productosSeleccionado.nombre,
       imagen:productosSeleccionado.imagen,
       descripcion:productosSeleccionado.descripcion,
+      precio:productosSeleccionado.precio,
       tipo:productosSeleccionado.tipo,
       marca:productosSeleccionado.marca,
+      categoria:productosSeleccionado.categoria,
+      alt:productosSeleccionado.alt,
     })
   }
   editarProducto(){
@@ -83,11 +92,14 @@ export class TableComponent {
       nombre: this.Productos.value.nombre!,
       imagen: this.Productos.value.imagen!,
       descripcion: this.Productos.value.descripcion!,
+      precio: this.Productos.value.precio!,
       tipo: this.Productos.value.tipo!,
       marca: this.Productos.value.marca!,
+      categoria: this.Productos.value.categoria!,
+      alt: this.Productos.value.alt!,
     }
     this.servicioCrud.modificarProducto(this.productoSeleccionado.id, datos)
-    .then(prodducto=>{
+    .then(producto=>{
       alert("el producto fue modificado con exito")
     })
     .catch(error=>{

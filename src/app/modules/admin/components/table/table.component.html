@@ -17,7 +17,7 @@
                 <img src="{{productos.imagen}}" width="200px" alt="{{productos.alt}}" >
             </td>
             <td>{{productos.nombre}}</td>
-            <td>{{productos.precios}}</td>
+            <td>{{productos.precio}}</td>
             <td>{{productos.descripcion}}</td>
             <td>{{productos.categoria}}</td>
             <!--Acciones -->
@@ -116,7 +116,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <div [formGroup]="Productos" class="modal-body">
+        <div [formGroup]="productosEdit" class="modal-body">
 
           <div class="mb-3">
             <label class="form-label">ingrese el nombre del producto</label>

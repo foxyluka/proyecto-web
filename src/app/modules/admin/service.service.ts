@@ -10,7 +10,7 @@ export class CrudService {
   // Definimos coleccion para los productos de la web del tipo producto
   private productosCollection: AngularFirestoreCollection<Productos>
 
-  constructor(private database:AngularFirestore) { 
+  constructor(private database:AngularFirestore) {
     this.productosCollection =database.collection('productos')
   }
 
