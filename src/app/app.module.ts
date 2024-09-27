@@ -2,18 +2,19 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './modules/shared/shared.module';
-import { TableComponent } from './modules/admin/components/table/table.component';
-import { AdminComponent } from './modules/admin/page/admin/admin.component';
+
+import { enviroment } from 'src/environments/enviroment';
+import { AngularFireModule } from '@angular/fire/compat'; // Es para el Cloud Firestore
+import { AngularFireAuthModule } from '@angular/fire/compat/auth'; // Es para la Autentificación
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableComponent,
-    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,7 +22,11 @@ import { AdminComponent } from './modules/admin/page/admin/admin.component';
     BrowserAnimationsModule,
     SharedModule,
     MatCardModule,
-    
+    AngularFireModule.initializeApp(enviroment.firebaseConfig),
+    // Autentificación
+    AngularFireAuthModule,
+    // Storage -> BD de imágenes 
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

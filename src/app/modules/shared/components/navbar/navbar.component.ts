@@ -9,12 +9,12 @@ export class NavbarComponent {
   cambiarFondo(){
 
     let toggle: HTMLInputElement | null=document.getElementById('toggle') as HTMLInputElement
-    let label_toggle:HTMLElement | null=document.getElementById('label_toggel') as HTMLElement
+    let label_toggle:HTMLElement | null=document.getElementById('label_toggle') as HTMLElement
     if (toggle) {
-      let cheaked: boolean = toggle.checked;
-      document.body.classList.toggle('dark', cheaked)
+      let checked: boolean = toggle.checked;
+      document.body.classList.toggle('dark', checked)
 
-      if (cheaked) {
+      if (checked) {
         label_toggle!.innerHTML ='<i class="fa-regular fa-sun"></i>'
       }else{
         label_toggle!.innerHTML ='<i class="fa-regular fa-moon"></i>'

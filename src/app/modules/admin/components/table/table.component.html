@@ -92,6 +92,7 @@
           </div>
 
         </div>
+        
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="agregarProducto()">Guardar</button>
           <button type="button" class="btn btn-primary">Save changes</button>
@@ -116,7 +117,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <div [formGroup]="productosEdit" class="modal-body">
+        <div [formGroup]="Productos" class="modal-body">
 
           <div class="mb-3">
             <label class="form-label">ingrese el nombre del producto</label>
@@ -126,12 +127,22 @@
           
           <div class="mb-3">
             <label class="form-label">ingrese la descripcion del producto</label>
-            <input class="form-control" type="text" formControlName="descripcion" placeholder="{{productosEdit.descripcion}}">
+            <input class="form-control" type="text" formControlName="descripcion" placeholder="{{productosEdit.tipo}}">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">ingrese la descripcion del producto</label>
+            <input class="form-control" type="text" formControlName="marca" placeholder="{{productosEdit.marca}}">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">ingrese la descripcion del producto</label>
+            <input class="form-control" type="text" formControlName="tipo" placeholder="{{productosEdit.descripcion}}">
           </div>
 
           <div class="mb-3">
             <label class="form-label">ingrese el precio del producto</label>
-            <input class="form-control" type="number" formControlName="precio" placeholder="{{productosEdit.precios}}">
+            <input class="form-control" type="number" formControlName="precio" placeholder="{{productosEdit.precio}}">
           </div>
 
           <div class="mb-3">
@@ -155,6 +166,7 @@
           </div>
 
         </div>
+        
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="editarProducto()">Guardar</button>
           <button type="button" class="btn btn-primary">Save changes</button>

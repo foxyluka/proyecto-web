@@ -32,23 +32,24 @@ export class CrudService {
 
   //obtener productos
   obtenerProducto(){
-    return this.productosCollection.snapshotChanges().pipe(map(Action=>Action.map(a=>a.payload.doc.data())))
+    return this.productosCollection.snapshotChanges().pipe(map(action=>action.map(a=>a.payload.doc.data())))
   }
   //editarlos
   modificarProducto(id:string, nuevaData:Productos){
-    return this.database.collection('producto').doc(id).update(nuevaData)
+    return this.database.collection('productos').doc(id).update(nuevaData)
   }
   
   //eliminarlos
   eliminarProducto(id: string){
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
       try{
-        const respuesta= this.productosCollection.doc(id).delete
+        // accedo a la colección, busco su ID y lo elimino
+        const respuesta = this.productosCollection.doc(id).delete();
+        resolve(respuesta);
       }
       catch(error){
         reject(error);
       }
-    }
-    )
+    })
   }
 }

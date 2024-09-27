@@ -12,11 +12,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
 
-
-
-
-
-
 @NgModule({
   declarations: [
     NavbarComponent,
