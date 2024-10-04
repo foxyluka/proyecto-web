@@ -24,11 +24,11 @@
             <!--Editar -->
             <td>
                 <button id="btn-edit" title="editar" type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarProducto" (click)="mostrarEditar(productos)">
-                    <mat-icon>edit</mat-icon>
+                    <mat-icon>Editar</mat-icon>
                 </button>
             <!--Borrar -->
                 <button id="btn-edit" title="editar" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminarProducto" (click)="mostrarBorrar(productos)">
-                    <mat-icon>delete</mat-icon>
+                    <mat-icon>Borrar</mat-icon>
                 </button>
             </td>
             <td>
@@ -42,7 +42,7 @@
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
+    Agregar producto
   </button>
   
   <!-- Modal -->
@@ -50,7 +50,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar producto</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -58,26 +58,31 @@
 
           <div class="mb-3">
             <label class="form-label">ingrese el nombre del producto</label>
-            <input class="form-control" type="text" formControlName="nombre" placeholder="Ej.:medias de chacho">
+            <input class="form-control" type="text" formControlName="nombre" placeholder="Ej.:Nvidia RX 3060">
           </div>
           
           <div class="mb-3">
+            <label class="form-label">ingrese la marca del producto</label>
+            <input class="form-control" type="text" formControlName="nombre" placeholder="Ej.:Nvidia">
+          </div>
+
+          <div class="mb-3">
             <label class="form-label">ingrese la descripcion del producto</label>
-            <input class="form-control" type="text" formControlName="descripcion" placeholder="Ej.: medias">
+            <input class="form-control" type="text" formControlName="descripcion" placeholder="Ej.: una de las mejores tarjetas graficas del mercado ">
           </div>
 
           <div class="mb-3">
             <label class="form-label">ingrese el precio del producto</label>
-            <input class="form-control" type="number" formControlName="precio" placeholder="">
+            <input class="form-control" type="number" formControlName="precio" placeholder="670.000$">
           </div>
 
           <div class="mb-3">
             <label class="form-label">seleccione una categoria</label>
             <select class="form-control form-select" formControlName="categoria">
               <option selected>elija una opcion</option>
-              <option value="alimentacion">alimentacion</option>
-              <option value="indumentaria">indumentaria</option>
-              <option value="juguetes">juguetes</option>
+              <option value="alimentacion">Memoria RAM</option>
+              <option value="indumentaria">Procesador</option>
+              <option value="juguetes">Tarjeta grafica</option>
             </select>
           </div>
 
@@ -94,8 +99,8 @@
         </div>
         
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="agregarProducto()">Guardar</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="agregarProducto()">Guardar cambios</button>
         </div>
       </div>
     </div>
@@ -123,11 +128,6 @@
             <label class="form-label">ingrese el nombre del producto</label>
             <input class="form-control" type="text" formControlName="nombre" placeholder="{{productosEdit.nombre}}">
 
-          </div>
-          
-          <div class="mb-3">
-            <label class="form-label">ingrese la descripcion del producto</label>
-            <input class="form-control" type="text" formControlName="descripcion" placeholder="{{productosEdit.tipo}}">
           </div>
 
           <div class="mb-3">
@@ -169,7 +169,7 @@
         
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="editarProducto()">Guardar</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">Guardar Cambios</button>
         </div>
       </div>
     </div>
@@ -189,7 +189,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="borrarProducto()">Eliminar</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Guardar cambios</button>
       </div>
     </div>
   </div>

@@ -3,6 +3,13 @@
   }
 
 .footer{
-   text-align: center;
-   background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+.footer h4{
+color: white;
+font-weight: 140;
+
 }
