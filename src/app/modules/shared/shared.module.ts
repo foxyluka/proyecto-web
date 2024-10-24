@@ -12,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
 
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -30,8 +31,12 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
   ],
   exports:[
     NavbarComponent,
-    CardsComponent,
     FooterComponent,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatMenuModule,
+    
   ]
 })
 export class SharedModule { }
