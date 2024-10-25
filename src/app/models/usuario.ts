@@ -1,7 +1,7 @@
 export interface Usuario {
     uid: string | any;
     nombre: string;
-    contraseña: string;
+    contrasena: string;
     correo: string
     rol:string
 }

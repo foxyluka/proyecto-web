@@ -4,7 +4,11 @@ import { CommonModule } from '@angular/common';
 import { AutentificacionRoutingModule } from './autentificacion-routing.module';
 import { RegistroComponent } from './registro/registro.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
-
+import { MatIconModule } from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,11 +17,21 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
   ],
   imports: [
     CommonModule,
-    AutentificacionRoutingModule
+    AutentificacionRoutingModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FormsModule,
   ],
   exports:[
     RegistroComponent,
-    InicioSesionComponent
+    InicioSesionComponent,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FormsModule,
   ]
 })
 export class AutentificacionModule { }

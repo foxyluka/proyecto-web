@@ -7,14 +7,14 @@
           <!--Email de Usuario-->
           <mat-form-field appearance="fill" required>
             <mat-label>Ingrese Email</mat-label>
-            <input [(ngModel)]="usuario.email" matInput placeholder="Ingrese Email de Usuario">
+            <input [(ngModel)]="usuario.correo" matInput placeholder="Ingrese Email de Usuario">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           </mat-form-field>
           
           <!--pasword Usuario-->
           <mat-form-field>
             <mat-label>Ingrese contaseña de Usuario</mat-label>
-            <input [(ngModel)]="usuario.password" matInput [type]="hide ? 'password' : 'text'"#input minlength="6" required>
+            <input [(ngModel)]="usuario.contrasena" matInput [type]="hide ? 'password' : 'text'"#input minlength="6" required>
             <button mat-icon-button matSuffix (click)="hide =!hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>

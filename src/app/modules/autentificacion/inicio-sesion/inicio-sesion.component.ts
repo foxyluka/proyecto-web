@@ -4,6 +4,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { AuthService } from '../services/auth.service';
 import { FirestoreService } from 'src/app/shared/service/firestore.service';
 import Swal from 'sweetalert2';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -17,7 +18,7 @@ export class InicioSesionComponent {
     nombre:'',
     correo:'',
     rol:'',
-    contraseña:'',
+    contrasena:'',
   }
   coleccionUsuario: Usuario[] = [];
   constructor(
@@ -28,10 +29,10 @@ export class InicioSesionComponent {
 async iniciosesion(){
 
   const credenciales={
-    email: this.usuario.correo,
-    contraseña: this.usuario.contraseña
+    correo: this.usuario.correo,
+    contrasena: this.usuario.contrasena
   }
-  const res = await this.servicioAuth.iniciar(credenciales.email , credenciales.contraseña)
+  const res = await this.servicioAuth.iniciar(credenciales.correo , credenciales.contrasena)
   .then(res=>{
     Swal.fire({
       title: "exelente!",
@@ -52,8 +53,8 @@ async iniciosesion(){
 
   limpiarinputs(){
     const inputs ={
-      email: this.usuario.correo,
-      password: this.usuario.contraseña
+      correo: this.usuario.correo,
+      contrasena: this.usuario.contrasena
     }
   }
 }
