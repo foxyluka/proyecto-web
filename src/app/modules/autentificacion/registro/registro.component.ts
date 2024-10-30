@@ -3,6 +3,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { FirestoreService } from 'src/app/shared/service/firestore.service'; 
+import * as CryptoJS from 'crypto-js';
 import Swal from 'sweetalert2'; 
 
 @Component({
@@ -11,11 +12,12 @@ import Swal from 'sweetalert2';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent {
+  hide=true
   usuario: Usuario={
     uid:'',
     nombre:'',
     correo:'',
-    rol: vis, // designamos un rol por defecto
+    rol: 'vis', // designamos un rol por defecto
     contrasena:'',
   }
 
@@ -29,7 +31,6 @@ constructor(
   public servicioFirestore: FirestoreService,) {}
 
 //FUNCION PÁRA EL REGISTRO
-
 async registrar(){
   const credenciales={
     correo: this.usuario.correo,
@@ -54,6 +55,7 @@ async registrar(){
 
   const uid =await this.servicioAuth.obteneruid();
   this.usuario.uid=uid;
+  this.usuario.contrasena=CryptoJS.SHA256(this.usuario.contrasena).toString()
   
   this.guardarUsuario()
   /*
@@ -83,6 +85,7 @@ async registrar(){
       uid: this.usuario.uid='',
       nombre:this.usuario.nombre='',
       correo:this.usuario.correo='',
+      rol: this.usuario.rol='vis',
       contrasena:this.usuario.contrasena='',
     }
   }
