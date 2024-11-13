@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
-
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import Swal from 'sweetalert2';
 import { Productos } from 'src/app/models/productos';
+import { CrudService } from 'src/app/modules/admin/services/crud.service';
+import { CarritoService } from 'src/app/modules/carrito/services/carrito.service';
 
 @Component({
   selector: 'app-cards',
@@ -9,8 +12,19 @@ import { Productos } from 'src/app/models/productos';
 })
 export class CardsComponent {
 public info: Productos[];
+coleccionProducto:Productos[]=[]
+productoSeleccionado!:Productos
+modalVisible:boolean=false
+compraVisible:boolean=false
 
-constructor(){
+@Input() productoReciente:string=''
+@Output() productoAgregado=new EventEmitter<Productos>;
+stock:number=0
+
+constructor(
+  public servicioCrud:CrudService,
+  public servicioCarrito:CarritoService
+){
   this.info=[
     {
       id: '1',
@@ -19,6 +33,7 @@ constructor(){
       descripcion: 'La tarjeta gráfica se encarga de procesar aquellos datos provenientes del procesador, entre imágenes y videos que se reproducen en la computadora.',
       precio:200,
       marca: 'Nvidia, AMD',
+      stock:0,
       categoria:'a',
       alt:''
     },
@@ -29,6 +44,7 @@ constructor(){
       descripcion: 'es la unidad de procesamiento encargada de interpretar las instrucciones de un hardware haciendo uso de distintas operaciones aritméticas y matemáticas.',
       precio:200,
       marca: 'Intel, AMD',
+      stock:0,
       categoria:'a',
       alt:''
     },
@@ -39,10 +55,40 @@ constructor(){
       descripcion: 'La memoria de acceso aleatorio (Random Access Memory, RAM) es una memoria de almacenaje a corto plazo.',
       precio:200,
       marca: 'kingston, ADATA',
+      stock:0,
       categoria:'a',
       alt:''
     }
   ]
 }
 
+
+
+  ngOnInit(): void{
+    this.servicioCrud.obtenerProducto().subscribe(producto=>{
+      this.coleccionProducto = producto
+    })
+  }
+
+  mostrarVer(info:Productos){
+    this.modalVisible=true
+
+    this.productoSeleccionado=info
+  }
+
+  agregarproducto(info:Productos){
+    this.productoAgregado.emit(info)
+
+    this.compraVisible= true;
+
+    const stockDeseado=Math.trunc(this.stock)
+    if(stockDeseado<=0 || stockDeseado){
+      Swal.fire({
+        title:"error al agregar producto",
+        text:"el stock ingresado no es valido",
+        icon:"error"
+      })
+    }
+
+  }
 }

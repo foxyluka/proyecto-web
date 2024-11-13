@@ -7,4 +7,5 @@ export interface Productos {
     marca: string;
     categoria: string;
     alt:string;
+    stock:number;
 }

@@ -7,7 +7,9 @@
       <th scope="col">Precio</th>
       <th scope="col">Descripcion</th>
       <th scope="col">Categoria</th>
+      <th scope="col">stock</th>
       <th scope="col">Acciones</th>
+      
     </tr>
   </thead>
   <tbody>
@@ -96,6 +98,11 @@
           <input class="form-control" formControlName="alt" type="text" placeholder="ingrese un texto alternativo">
         </div>
 
+        <div class="mb-3">
+          <label class="form-label">ingrese stock de su producto</label>
+          <input class="form-control" type="number" formControlName="stock" placeholder="ingrese stock">
+        </div>
+
       </div>
 
       <div class="modal-footer">
@@ -164,7 +171,15 @@
           <input class="form-control" formControlName="alt" type="text" placeholder="{{productosEdit.alt}}">
         </div>
 
+        <div class="mb-3">
+        <label class="form-label">ingrese stock de su producto</label>
+        <input class="form-control" type="number" formControlName="stock" placeholder="{{productosEdit.stock}}">
       </div>
+
+      </div>
+
+      
+      
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"

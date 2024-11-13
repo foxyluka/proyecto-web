@@ -25,6 +25,7 @@ export class TableComponent {
     marca: new FormControl('',Validators.required),
     categoria: new FormControl('',Validators.required),
     alt: new FormControl('',Validators.required),
+    stock: new FormControl(0,Validators.required)
   })
   constructor(public servicioCrud: CrudService){}
   ngOnInit():void{
@@ -43,6 +44,7 @@ export class TableComponent {
         precio:this.Productos.value.precio!,
         marca: this.Productos.value.marca!,
         categoria: this.Productos.value.categoria!,
+        stock: this.Productos.value.stock!,
         alt:this.Productos.value.alt!,
       }
       await this.servicioCrud.crearProducto(nuevoProducto)
@@ -81,6 +83,7 @@ export class TableComponent {
       marca:productosSeleccionado.marca,
       categoria:productosSeleccionado.categoria,
       alt:productosSeleccionado.alt,
+      stock:productosSeleccionado.stock,
     })
   }
   editarProducto(){
@@ -92,6 +95,7 @@ export class TableComponent {
       precio: this.Productos.value.precio!,
       marca: this.Productos.value.marca!,
       categoria: this.Productos.value.categoria!,
+      stock:this.Productos.value.stock!,
       alt: this.Productos.value.alt!,
     }
     this.servicioCrud.modificarProducto(this.productoSeleccionado.id, datos)

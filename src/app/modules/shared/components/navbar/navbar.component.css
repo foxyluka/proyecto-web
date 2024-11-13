@@ -2,7 +2,7 @@
     flex: 1 1 auto;
   }
   mat-toolbar{
-    background-color: rgb(15, 71, 122);
+    background-color: rgb(177, 12, 12);
   }
 
   span{
@@ -15,11 +15,11 @@
   }
   
   .iconomenu{
-    color: rgb(15, 71, 122);
+    color: rgb(0, 0, 0);
   }
 
   .botonmenu{
-    background-color: rgb(255, 217, 0);
+    background-color: rgb(255, 255, 255);
   }
 
   .menumenu{
