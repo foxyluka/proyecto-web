@@ -11,7 +11,13 @@ import { PedidoComponent } from './componentrs/pedido/pedido.component';
   ],
   imports: [
     CommonModule,
+    CarritoRoutingModule,
     CarritoRoutingModule
+  ],
+  exports:[
+    PedidoComponent,
+    CarritoRoutingModule
+    
   ]
 })
 export class CarritoModule { }
