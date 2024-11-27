@@ -193,10 +193,10 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" *ngIf="modalVisibleProducto" id="eliminarProducto" tabindex="-1"
+<div class="modal fade"  id="eliminarProducto" tabindex="-1"
   aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" *ngIf="modalVisibleProducto">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">¿vas a borrar algo pibe?</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -10,12 +10,14 @@ import { enviroment } from 'src/environments/enviroment';
 import { AngularFireModule } from '@angular/fire/compat'; // Es para el Cloud Firestore
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'; // Es para la Autentificación
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { TiendaComponent } from './modules/tienda/tienda.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    TiendaComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,3 +5,8 @@
 @media(min-width:700px)  {
 
 }
+
+.example-card {
+    max-width: 400px;
+  }
+  
