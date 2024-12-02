@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { FirestoreService } from 'src/app/shared/service/firestore.service'; 
+import { FirestoreService } from 'src/app/modules/shared/service/firestore.service'; 
 import * as CryptoJS from 'crypto-js';
 import Swal from 'sweetalert2'; 
 
@@ -17,7 +17,7 @@ export class RegistroComponent {
     uid:'',
     nombre:'',
     correo:'',
-    rol: 'vis', // designamos un rol por defecto
+    rol:"usuario", // designamos un rol por defecto
     contrasena:'',
   }
 
@@ -43,8 +43,11 @@ async registrar(){
       text: "Su usuario se registro con exito!",
       icon: "success"
     });
+
     this.servicioRutas.navigate(['/incio'])
+
   })
+
   .catch(error=>{
     Swal.fire({
       title: "oh no",
@@ -58,23 +61,12 @@ async registrar(){
   this.usuario.contrasena=CryptoJS.SHA256(this.usuario.contrasena).toString()
   
   this.guardarUsuario()
-  /*
-  const credenciales= {
-    uid:this.usuario.uid,
-    nombre:this.usuario.nombre,
-    apellido:this.usuario.apellido,
-    email:this.usuario.email,
-    rol:this.usuario.rol,
-    password:this.usuario.password,
-    }
-    // enviamos los nuevos registros por medio del metodo push a la coleccion
-   alert ('se registro con exito')*/
-   this.limpiarImputs()
+  this.limpiarImputs()
   }
 
   async guardarUsuario(){
     this.servicioFirestore.agrerarUsuario(this.usuario, this.usuario.uid)
-    .then(respuesta=>{console.log(this.usuario)
+    .then(res=>{console.log(this.usuario)
     })
     .catch(err=>{console.log('error=>',err)
     })
@@ -89,5 +81,4 @@ async registrar(){
       contrasena:this.usuario.contrasena='',
     }
   }
-
 }

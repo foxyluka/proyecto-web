@@ -12,11 +12,10 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   providedIn: 'root'
 })
 export class AuthService {
-  private rollUsuario:string | null=null;
+  private rolUsuario:string | null=null;
   constructor(
     private auth: AngularFireAuth,
     private servicioFirestore: AngularFirestore
-    
   ) { }
 
 
@@ -46,6 +45,7 @@ export class AuthService {
       return user.uid
     }
   }
+  
   obtenerRol(uid:string): Observable<string|null>{
     //retornamos del servicio de firestore la coleccion de usuario, buscando por UID, Observamos los cambios de valores, mapeamos
     //al documento de usuario e identificamos el atributo de rol (aun si este es nulo)
@@ -54,10 +54,21 @@ export class AuthService {
   }
   //obtiene el rol de la primera funcion y lo asigna a la propiedad privada local
   enviarRolUsuario(rol: string){
-    this.rollUsuario=rol;
+    this.rolUsuario=rol;
+  }
+  setUsuarioRol(rol: string){
+    this.rolUsuario = rol;
   }
   //obtiene el rol y lo retorna
   obtenerRolUsuario():string | null {
-    return this.rollUsuario;
+    return this.rolUsuario;
+  }
+  obtenerUsuario(email: string){
+    /**
+     * Retornamos del servicioFirestore la colección de 'usuarios', buscamos una referencia en los email registrados
+     * y los comparamos con los que ingrese el usuario al iniciar sesión, y lo obtiene con el '.get()'
+     * Lo vuelve una promesa => da un resultado RESUELTO o RECHAZADO
+     */
+    return this.servicioFirestore.collection('usuarios', ref => ref.where('email', '==', email)).get().toPromise();
   }
 }
