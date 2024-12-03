@@ -13,70 +13,78 @@ import * as CryptoJS from 'crypto-js';
 })
 export class InicioSesionComponent {
   hide = true;
+
   constructor(
     public servicioAuth: AuthService,
     public servicioFirestore: FirestoreService,
     public servicioRutas: Router
-  ){}
-  usuario: Usuario={
-    uid:'',
-    nombre:'',
-    correo:'',
-    rol:'',
-    contrasena:'',
-  }
-  coleccionUsuario: Usuario[] = [];
-  
-  
-async iniciosesion(){
-  const credenciales={
-    correo: this.usuario.correo,
-    contrasena: this.usuario.contrasena
-  }
-  try {
-    // obtenemos usuario de la Base de Datos
-    const usuarioBD = await this.servicioAuth.obtenerUsuario(credenciales.correo);
+  ) { }
 
-    // Condicional verificada que ese usuario de la BD existiera o que sea igual al de nuestra colección
-    if (!usuarioBD || usuarioBD.empty) {
-      Swal.fire({
-        title: "Error!",
-        text: "no se encontro la cuenta con la que intenta iniciar!",
-        icon: "error"
-      });
-      this.limpiarinputs();
-      return;
+  usuario: Usuario = {
+    uid: '',
+    nombre: '',
+    correo: '',
+    rol: '',
+    contrasena: '',
+  }
+
+  async iniciosesion() {
+    const credenciales = {
+      correo: this.usuario.correo,
+      contrasena: this.usuario.contrasena
     }
+    try {
+      // obtenemos usuario de la Base de Datos
+      const usuarioBD = await this.servicioAuth.obtenerUsuario(credenciales.correo);
 
-  const usuarioDoc = usuarioBD.docs[0];
-  const usuarioData = usuarioDoc.data() as Usuario;
+      // Condicional verificada que ese usuario de la BD existiera o que sea igual al de nuestra colección
+      if (!usuarioBD || usuarioBD.empty) {
+        Swal.fire({
+          title: "Error!",
+          text: "¡No se encontro la cuenta con la que intenta iniciar!",
+          icon: "error"
+        });
 
-  const hashedPassword = CryptoJS.SHA256(credenciales.contrasena).toString();
+        this.limpiarinputs();
+        return;
+      }
 
-  if (hashedPassword !== usuarioData.contrasena) {
-    Swal.fire({
-      title: "¡Oh no!",
-      text: "Contraseña incorrecta",
-      icon: "error"
-    });
-    this.usuario.contrasena = '';
-    return;
-  }
-  const res = await this.servicioAuth.iniciar(credenciales.correo, credenciales.contrasena)
-    .then(res => {
-      Swal.fire({
-        title: "¡Buen trabajo!",
-        text: "¡Se pudo ingresar con éxito :)!",
-        icon: "success"
-      });
-      this.servicioAuth.setUsuarioRol(usuarioData.rol);
-      if(usuarioData.rol === "admin"){
-        console.log("Inicio de administrador");
-        // Si es administrador, redirecciona a la vista de "admin"
-        this.servicioRutas.navigate(['/admin']);
-      } else {
-        console.log("Inicio de visitante");
-        this.servicioRutas.navigate(['/inicio']);
+      const usuarioDoc = usuarioBD.docs[0];
+
+      const usuarioData = usuarioDoc.data() as Usuario;
+
+      const hashedPassword = CryptoJS.SHA256(credenciales.contrasena).toString();
+
+      if (hashedPassword !== usuarioData.contrasena) {
+        Swal.fire({
+          title: "¡Oh no!",
+          text: "Contraseña incorrecta",
+          icon: "error"
+        });
+
+        this.usuario.contrasena = '';
+        return;
+      }
+
+      const res = await this.servicioAuth.iniciar(credenciales.correo, credenciales.contrasena)
+        .then(res => {
+          Swal.fire({
+            title: "¡Buen trabajo!",
+            text: "¡Se pudo ingresar con éxito :)!",
+            icon: "success"
+          });
+          
+          this.servicioAuth.setUsuarioRol(usuarioData.rol);
+          if (usuarioData.rol === "admin") {
+
+            console.log("Inicio de administrador");
+
+            // Si es administrador, redirecciona a la vista de "admin"
+            this.servicioRutas.navigate(['/admin']);
+
+          } else {
+            console.log("Inicio de visitante");
+            this.servicioRutas.navigate(['/inicio']);
           }
         })
         .catch(err => {
@@ -88,15 +96,15 @@ async iniciosesion(){
 
           this.limpiarinputs();
         })
-    } catch(error){
+    } catch (error) {
       this.limpiarinputs();
     }
   }
 
-  limpiarinputs(){
-    const inputs ={
-      correo: this.usuario.correo="",
-      contrasena: this.usuario.contrasena=""
+  limpiarinputs() {
+    const inputs = {
+      correo: this.usuario.correo = "",
+      contrasena: this.usuario.contrasena = ""
     }
   }
 }
