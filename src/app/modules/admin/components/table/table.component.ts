@@ -45,7 +45,7 @@ export class TableComponent {
         id: '',
         // el resto es tomado con información ingresada por el usuario
         nombre: this.Productos.value.nombre!,
-        imagen: "",
+        imagen: '',
         descripcion: this.Productos.value.descripcion!,
         precio:this.Productos.value.precio!,
         marca: this.Productos.value.marca!,
@@ -114,6 +114,7 @@ cargarImagen(event: any){
     this.modalVisibleProducto=true
     this.productoSeleccionado=productoSeleccionado;
   }
+  
   borrarProducto(){
     this.servicioCrud.eliminarProducto(this.productoSeleccionado.id, this.imagen)
     .then(respuesta=>{
@@ -150,13 +151,41 @@ cargarImagen(event: any){
       stock:this.Productos.value.stock!,
       alt: this.Productos.value.alt!,
     }
-    this.servicioCrud.modificarProducto(this.productoSeleccionado.id, datos)
-    .then(producto=>{
-      alert("el producto fue modificado con exito")
-    })
-    .catch(error=>{
-      alert("hubo un problema al modificar  el producto")
-    })
+
+    if(this.imagen){
+      this.servicioCrud.subirImagen(this.nombreImagen, this.imagen, "productos")
+      .then(resp => {
+        this.servicioCrud.obtenerUrlImagen(resp)
+        .then(url =>{
+          datos.imagen = url; // Actualizamos URL de la imagen en los datos del formulario
+
+          this.actualizarProducto(datos); // Actualizamos los datos
+
+          this.Productos.reset(); // Vaciar las casillas del formulario
+        })
+        .catch(error => {
+          alert("Hubo un problema al subir la imagen :( \n"+error);
+
+          this.Productos.reset();
+        })
+      })
+    }else{
+      /*
+        Actualizamos formulario con los datos recibidos del usuario, pero sin 
+        modificar la imagen ya existente en Firestore y en Storage
+      */
+      this.actualizarProducto(datos);
+    }
+
   }
-  
+    actualizarProducto(datos: Productos){
+     this.servicioCrud.modificarProducto(this.productoSeleccionado.id, datos)
+     .then(producto=>{
+       alert("el producto fue modificado con exito")
+      })
+     .catch(error=>{
+       alert("hubo un problema al modificar  el producto")
+      })
+     }
+    
 }
