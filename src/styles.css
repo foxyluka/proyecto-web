@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 body{
     transition: all 1.5 ease;
+    background-color: black;
+    color: rgb(255, 255, 255);
 }
 #toggle{
     display: none;
@@ -10,9 +12,10 @@ body{
     cursor: pointer;
 }
 .dark{
-    background-color: black;
-    color: white;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     transition: all 1.5 ease;
 }
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

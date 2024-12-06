@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     AutentificacionRoutingModule,
     MatIconModule,
+    MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -28,6 +30,7 @@ import { FormsModule } from '@angular/forms';
     RegistroComponent,
     InicioSesionComponent,
     MatIconModule,
+    MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,

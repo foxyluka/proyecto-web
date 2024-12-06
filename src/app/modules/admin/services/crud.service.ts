@@ -23,6 +23,7 @@ export class CrudService {
       try{
         //creamos numero identificativo para el producto de la base de datos
         const id=this.database.createId();
+
         producto.id= id;
 
         producto.imagen = imagenUrl;
@@ -50,6 +51,7 @@ export class CrudService {
       try{
         // Definimos referencias localmente de Storage
         const storage = getStorage();
+
         // Obtiene la referencia desde el almacenamiento de Storage
         const referenciaImagen = ref(storage, imagenUrl);
 
@@ -74,6 +76,7 @@ export class CrudService {
     // Retorna URL obtenida como REFERENCIA
     return getDownloadURL(respuesta.ref);
   }
+
   async subirImagen(nombre: string, imagen: any, ruta: string){
     try{
       // Crear una referencia de imagen:

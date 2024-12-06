@@ -16,7 +16,7 @@
     <tr *ngFor="let productos of coleccionProductos">
       <th scope="row">1</th>
       <td>
-        <img src="{{productos.imagen}}" width="200px" alt="{{productos.alt}}">
+        <img src="{{productos.imagen}}" width="100px" alt="{{productos.alt}}">
       </td>
       <td>{{productos.nombre}}</td>
       <td>{{productos.precio}}</td>
@@ -91,8 +91,7 @@
 
         <div class="mb-3">
           <label class="form-label">ingrese una imagen</label>
-          <input class="form-control" formControlName="imagen" type="text"
-            placeholder="ingrese un vinculo de una imagen">
+          <input type="file" accept="imagen/*" (change)="cargarImagen($event)">
         </div>
 
         <div class="mb-3">
@@ -165,7 +164,7 @@
 
         <div class="mb-3">
           <label class="form-label">ingrese una imagen</label>
-          <input class="form-control" formControlName="imagen" type="text" placeholder="{{productosEdit.imagen}}">
+          <input type="file" accept="imagen/*" (change)="cargarImagen($event)">
         </div>
 
         <div class="mb-3">
