@@ -83,6 +83,20 @@
     backface-visibility: hidden;
   }
 
+  .tarjetas {
+    margin-bottom: 15px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #5dd3f0;
+  }
+  
+  .col-tarjeta{
+    background-color: pink;
+    justify-content:center;
+    display: inline-block;
+  }
+
 }
 
 @media(min-width:700px) {
@@ -169,8 +183,24 @@
     height: 100%;
     backface-visibility: hidden;
   }
+  
+  
+  .tarjetas {
+    margin-bottom: 15px;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .col-tarjeta{
+    justify-content:center;
+    display: flex;
+  }
 
 }
+
+
+
 
 .example-card {
   max-width: 400px;
@@ -187,12 +217,12 @@
   color: white;
 }
 
+
+
 .row {
   margin-bottom: 25px;
   justify-content: center;
 }
 
-.col{
-  justify-content: center;
-}
+
 
